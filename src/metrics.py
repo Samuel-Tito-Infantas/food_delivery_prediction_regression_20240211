@@ -1,3 +1,4 @@
+from typing import Union
 import pandas as pd
 import numpy as np
 
@@ -12,7 +13,7 @@ from sklearn.metrics import (
 
 
 def metrics_values(
-    y_true: pd.DataFrame | np.array, y_pred: pd.DataFrame | np.array
+    y_true: Union[pd.DataFrame, np.ndarray], y_pred: Union[pd.DataFrame, np.ndarray]
 ) -> pd.DataFrame:
     """
     This function calculate differente metrics for regression problems
@@ -30,9 +31,7 @@ def metrics_values(
     mse = mean_squared_error(y_true, y_pred)  # Mean Squared Error (MSE)
     print(f"Mean Squared Error (MSE): {mse}")
 
-    rmse = mean_squared_error(
-        y_true, y_pred, squared=False
-    )  # Root Mean Squared Error (RMSE)
+    rmse = mse**2
     print(f"Root Mean Squared Error (RMSE): {rmse}")
 
     msle = mean_squared_log_error(
