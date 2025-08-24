@@ -1,14 +1,15 @@
+from typing import Union
 import math
 import pandas as pd
 import numpy as np
 
 
 def vincenty_distance(
-    lat1: pd.DataFrame | np.array,
-    lon1: pd.DataFrame | np.array,
-    lat2: pd.DataFrame | np.array,
-    lon2: pd.DataFrame | np.array,
-) -> np.array:
+    lat1: Union[pd.DataFrame, np.ndarray, float],
+    lon1: Union[pd.DataFrame, np.ndarray, float],
+    lat2: Union[pd.DataFrame, np.ndarray, float],
+    lon2: Union[pd.DataFrame, np.ndarray, float],
+) -> np.ndarray:
     """
     This function calculate the distance between two points in base the latitude and longitude for each one of points
     using the Vicenty form.
@@ -45,11 +46,11 @@ def vincenty_distance(
 
 
 def bearing_degree(
-    lat1: pd.DataFrame | np.array,
-    lng1: pd.DataFrame | np.array,
-    lat2: pd.DataFrame | np.array,
-    lng2: pd.DataFrame | np.array,
-) -> np.array:
+    lat1: Union[pd.DataFrame, np.ndarray, float],
+    lng1: Union[pd.DataFrame, np.ndarray, float],
+    lat2: Union[pd.DataFrame, np.ndarray, float],
+    lng2: Union[pd.DataFrame, np.ndarray, float],
+) -> np.ndarray:
     """
     This function calculate angle between two points
 
