@@ -3,23 +3,11 @@ from app.services.ml.feature_engineer import vincenty_distance, bearing_degree
 
 
 class FeaturePreprocessor:
-    def __init__(self):
-        self.type_of_order_mapping = {"Snack": 1, "Drinks": 2, "Buffet": 3, "Meal": 4}
+    def __init__(self, config:dict):
+        self.type_of_order_mapping = config["type_of_order_mapping"]
+        self.type_of_vehicle_mapping = config["type_of_vehicle_mapping"]
+        self.model_features = config["model_features"]
 
-        self.type_of_vehicle_mapping = {
-            "motorcycle": 1,
-            "scooter": 2,
-            "electric_scooter": 3,
-            "bicycle": 4,
-        }
-
-        self.scoring_features = [
-            "Delivery_person_Age",
-            "Delivery_person_Ratings",
-            "Type_of_vehicle",
-            "vincenty_distance",
-            "bearing_distance",
-        ]
 
     def transform(self, features: InputSchema) -> list:
         features_dict = features.dict()
@@ -43,6 +31,6 @@ class FeaturePreprocessor:
             features_dict["Delivery_location_longitude"],
         )
 
-        features_scoring_list = [[features_dict[key] for key in self.scoring_features]]
+        features_scoring_list = [[features_dict[key] for key in self.model_features]]
 
         return features_scoring_list, features_dict
