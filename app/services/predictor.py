@@ -4,13 +4,15 @@ from app.services.ml.processor import FeaturePreprocessor
 
 
 class DeliveryPredictorService:
-    def __init__(self, model_path: str):
+    def __init__(self, model_path: str, preprocessor: FeaturePreprocessor) :
         with open(model_path, "rb") as f:
             self.model = pickle.load(f)
 
-    def predict(self, input_data: InputSchema) -> OutputSchema:
-        preprocessor = FeaturePreprocessor()
-        preprocessed_scoring_list, preprocessed_data = preprocessor.transform(
+        self.preprocessor = preprocessor
+
+
+    def predict(self, input_data: InputSchema) -> float:
+        preprocessed_scoring_list, preprocessed_data = self.preprocessor.transform(
             input_data
         )
 

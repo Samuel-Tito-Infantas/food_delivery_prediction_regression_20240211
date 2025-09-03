@@ -1,0 +1,21 @@
+{
+  "model_features": [
+    "Delivery_person_Age",
+    "Delivery_person_Ratings",
+    "Type_of_vehicle",
+    "vincenty_distance",
+    "bearing_distance"
+  ],
+  "type_of_order_mapping": {
+    "Snack": 1,
+    "Drinks": 2,
+    "Buffet": 3,
+    "Meal": 4
+  },
+  "type_of_vehicle_mapping": {
+    "motorcycle": 1,
+    "scooter": 2,
+    "electric_scooter": 3,
+    "bicycle": 4
+  }
+}
