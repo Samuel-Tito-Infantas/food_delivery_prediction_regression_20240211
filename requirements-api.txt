@@ -2,3 +2,5 @@ fastapi
 pydantic
 uvicorn
 pydantic-settings
+numpy
+xgboost
