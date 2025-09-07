@@ -1,14 +1,13 @@
 from typing import Union
 import math
-import pandas as pd
 import numpy as np
 
 
 def vincenty_distance(
-    lat1: Union[pd.DataFrame, np.ndarray, float],
-    lon1: Union[pd.DataFrame, np.ndarray, float],
-    lat2: Union[pd.DataFrame, np.ndarray, float],
-    lon2: Union[pd.DataFrame, np.ndarray, float],
+    lat1: Union[np.ndarray, float],
+    lon1: Union[np.ndarray, float],
+    lat2: Union[np.ndarray, float],
+    lon2: Union[np.ndarray, float],
 ) -> np.ndarray:
     """
     This function calculate the distance between two points in base the latitude and longitude for each one of points
@@ -46,10 +45,10 @@ def vincenty_distance(
 
 
 def bearing_degree(
-    lat1: Union[pd.DataFrame, np.ndarray, float],
-    lng1: Union[pd.DataFrame, np.ndarray, float],
-    lat2: Union[pd.DataFrame, np.ndarray, float],
-    lng2: Union[pd.DataFrame, np.ndarray, float],
+    lat1: Union[np.ndarray, float],
+    lng1: Union[np.ndarray, float],
+    lat2: Union[np.ndarray, float],
+    lng2: Union[np.ndarray, float],
 ) -> np.ndarray:
     """
     This function calculate angle between two points
@@ -63,7 +62,6 @@ def bearing_degree(
     Returns:
         Return de bearing degree.
     """
-    radius = 6371  # Mean radius of Earth
     diff_lng = np.radians(lng2 - lng1)
     lat1, lng1, lat2, lng2 = map(np.radians, (lat1, lng1, lat2, lng2))
     y = np.sin(diff_lng) * np.cos(lat2)
