@@ -1,3 +1,4 @@
+from typing import Union
 import pandas as pd
 import numpy as np
 
@@ -14,7 +15,7 @@ from sklearn.metrics import mean_squared_error
 
 
 def create_plot_correlation(
-    x: pd.DataFrame, y: pd.DataFrame | np.array, correlation_method: str
+    x: pd.DataFrame, y: Union[pd.DataFrame, np.ndarray], correlation_method: str
 ):
     """
     This function calculate the correlation between features and target
@@ -38,7 +39,7 @@ def create_plot_correlation(
 
 def rfe_feature_selection(
     x: pd.DataFrame,
-    y: pd.DataFrame | np.array,
+    y: Union[pd.DataFrame, np.ndarray],
     model_used: str,
     num_features_to_select: int,
 ) -> np.array:
@@ -95,7 +96,9 @@ def rfe_feature_selection(
         return None
 
 
-def feature_importance(x: pd.DataFrame, y: pd.DataFrame | np.array, model_used: str):
+def feature_importance(
+    x: pd.DataFrame, y: Union[pd.DataFrame, np.ndarray], model_used: str
+):
     """
     This function calculate angle between two points
 
@@ -129,7 +132,7 @@ def feature_importance(x: pd.DataFrame, y: pd.DataFrame | np.array, model_used: 
 
 def check_model(
     model_used: str,
-) -> LinearRegression | RandomForestRegressor | XGBRegressor | None:
+) -> Union[LinearRegression, RandomForestRegressor, XGBRegressor, None]:
     """
     Check the name of parameter 'model_used'
 
