@@ -62,7 +62,6 @@ def bearing_degree(
     Returns:
         Return de bearing degree.
     """
-    radius = 6371  # Mean radius of Earth
     diff_lng = np.radians(lng2 - lng1)
     lat1, lng1, lat2, lng2 = map(np.radians, (lat1, lng1, lat2, lng2))
     y = np.sin(diff_lng) * np.cos(lat2)
