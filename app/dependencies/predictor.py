@@ -8,6 +8,10 @@ from app.services.ml.processor import FeaturePreprocessor
 
 
 @lru_cache(maxsize=None)
-def get_predictor_service(preprocessor: FeaturePreprocessor = Depends(get_feature_preprocessor)) -> DeliveryPredictorService:
-    service = DeliveryPredictorService(model_path=settings.MODEL_PATH, preprocessor=preprocessor)
+def get_predictor_service(
+    preprocessor: FeaturePreprocessor = Depends(get_feature_preprocessor),
+) -> DeliveryPredictorService:
+    service = DeliveryPredictorService(
+        model_path=settings.MODEL_PATH, preprocessor=preprocessor
+    )
     return service
