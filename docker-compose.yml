@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - SERVICES=s3,sqs,lambda,ecs,ecr,iam
+      - DEBUG=1
+      - DEFAULT_REGION=us-east-1
+    ports:
+      - "4566:4566"
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - MODEL_PATH="models/model_gbost.pkl"
+      - APP_NAME="LocalStack - Food Delivery Prediction"
+      - APP_VERSION="0.1.0-localstack"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - localstack
